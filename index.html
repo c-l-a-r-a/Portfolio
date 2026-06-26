@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clara Corvalán — UX Writing & Localization Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,300;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0e0f11;
+  --surface: #16181c;
+  --surface-2: #1d2026;
+  --border: rgba(255,255,255,0.07);
+  --border-bright: rgba(255,255,255,0.14);
+  --ink: #f0eee8;
+  --muted: #8a8680;
+  --faint: #4a4844;
+  --accent: #c9a96e;
+  --accent-soft: rgba(201,169,110,0.12);
+  --accent-dim: rgba(201,169,110,0.35);
+  --red: #c94a3a;
+  --red-soft: rgba(201,74,58,0.12);
+  --green: #3a9e6a;
+  --green-soft: rgba(58,158,106,0.12);
+  --blue: #5a8fc4;
+  --blue-soft: rgba(90,143,196,0.12);
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Inter', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── LAYOUT ─── */
+.container { max-width: 900px; margin: 0 auto; padding: 0 28px; }
+.wide { max-width: 1100px; margin: 0 auto; padding: 0 28px; }
+
+/* ─── NAV ─── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(14,15,17,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 28px;
+}
+.nav-inner {
+  max-width: 900px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 56px;
+}
+.nav-name {
+  font-family: var(--serif); font-weight: 500; font-size: 17px;
+  color: var(--ink); text-decoration: none;
+  font-style: italic;
+}
+.nav-links { display: flex; gap: 28px; list-style: none; }
+.nav-links a {
+  font-size: 13px; color: var(--muted); text-decoration: none;
+  font-family: var(--mono); letter-spacing: 0.04em;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--ink); }
+
+/* ─── HERO ─── */
+.hero {
+  padding: 100px 0 80px;
+  border-bottom: 1px solid var(--border);
+}
+.hero-eyebrow {
+  font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 28px;
+  display: flex; align-items: center; gap: 10px;
+}
+.hero-eyebrow::before {
+  content: ''; display: block; width: 32px; height: 1px; background: var(--accent);
+}
+.hero h1 {
+  font-family: var(--serif); font-size: clamp(40px, 7vw, 66px);
+  font-weight: 300; line-height: 1.12; letter-spacing: -0.02em;
+  margin-bottom: 24px; color: var(--ink);
+}
+.hero h1 em {
+  font-style: italic; color: var(--accent); font-weight: 300;
+}
+.hero-sub {
+  font-size: 17px; line-height: 1.7; color: var(--muted);
+  max-width: 580px; margin-bottom: 44px;
+}
+.hero-sub strong { color: var(--ink); font-weight: 500; }
+.hero-pills {
+  display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 44px;
+}
+.pill {
+  font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.06em;
+  padding: 5px 13px; border-radius: 3px;
+  border: 1px solid var(--border-bright); color: var(--muted);
+}
+.pill.accent { border-color: var(--accent-dim); color: var(--accent); background: var(--accent-soft); }
+.hero-cta {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--accent); color: var(--bg);
+  font-weight: 600; font-size: 14px; padding: 12px 24px;
+  text-decoration: none; border-radius: 4px;
+  transition: opacity 0.2s;
+}
+.hero-cta:hover { opacity: 0.88; }
+
+/* ─── SECTION HEADERS ─── */
+.section-header {
+  padding: 72px 0 40px; border-bottom: 1px solid var(--border);
+  margin-bottom: 0;
+}
+.section-eyebrow {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 14px;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-eyebrow::before {
+  content: ''; display: block; width: 20px; height: 1px; background: var(--accent);
+}
+.section-title {
+  font-family: var(--serif); font-size: clamp(26px, 4vw, 38px);
+  font-weight: 300; font-style: italic; color: var(--ink); margin-bottom: 12px;
+}
+.section-desc {
+  font-size: 15.5px; color: var(--muted); max-width: 560px; line-height: 1.65;
+}
+
+/* ─── FILTER BAR ─── */
+.filter-bar {
+  display: flex; gap: 8px; flex-wrap: wrap;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--border);
+}
+.filter-btn {
+  font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.08em;
+  padding: 6px 14px; border-radius: 3px;
+  border: 1px solid var(--border-bright); background: transparent;
+  color: var(--muted); cursor: pointer; transition: all 0.18s;
+}
+.filter-btn:hover { color: var(--ink); border-color: var(--border-bright); }
+.filter-btn.active {
+  background: var(--accent-soft); border-color: var(--accent-dim);
+  color: var(--accent);
+}
+
+/* ─── CASE CARDS ─── */
+.cases { display: flex; flex-direction: column; gap: 1px; background: var(--border); }
+.case-card {
+  background: var(--surface); padding: 0;
+  transition: background 0.2s;
+}
+.case-card:hover { background: var(--surface-2); }
+
+.case-top {
+  padding: 32px 36px 0;
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 20px;
+  flex-wrap: wrap;
+}
+.case-meta {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+}
+.case-tag {
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em;
+  text-transform: uppercase; padding: 3px 9px; border-radius: 2px;
+}
+.tag-onboarding { background: var(--blue-soft); color: var(--blue); }
+.tag-microcopy  { background: var(--green-soft); color: var(--green); }
+.tag-technical  { background: var(--accent-soft); color: var(--accent); }
+.tag-l10n       { background: rgba(180,80,180,0.12); color: #b06db0; }
+.tag-error      { background: var(--red-soft); color: var(--red); }
+
+.case-platform {
+  font-family: var(--mono); font-size: 10.5px; color: var(--faint); letter-spacing: 0.06em;
+}
+
+.severity {
+  display: flex; align-items: center; gap: 6px;
+  font-family: var(--mono); font-size: 10.5px; color: var(--muted);
+}
+.sev-dots { display: flex; gap: 3px; }
+.sev-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--border-bright);
+}
+.sev-dot.filled { background: var(--accent); }
+.sev-dot.filled.high { background: var(--red); }
+
+.case-title {
+  font-family: var(--serif); font-size: 21px; font-weight: 500;
+  color: var(--ink); padding: 18px 36px 0; line-height: 1.3;
+}
+
+/* before/after */
+.diff-block {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1px; background: var(--border);
+  margin: 24px 36px 0;
+  border-radius: 4px; overflow: hidden;
+}
+@media (max-width: 640px) { .diff-block { grid-template-columns: 1fr; } }
+
+.diff-col { padding: 20px 22px; }
+.diff-col.before { background: rgba(201,74,58,0.06); }
+.diff-col.after  { background: rgba(58,158,106,0.06); }
+
+.diff-label {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em;
+  text-transform: uppercase; margin-bottom: 12px;
+  display: flex; align-items: center; gap: 6px;
+}
+.diff-col.before .diff-label { color: var(--red); }
+.diff-col.after .diff-label  { color: var(--green); }
+
+.diff-copy {
+  font-size: 15px; line-height: 1.6;
+}
+.diff-col.before .diff-copy {
+  color: var(--muted);
+  text-decoration: line-through;
+  text-decoration-color: rgba(201,74,58,0.4);
+  text-decoration-thickness: 1.5px;
+}
+.diff-col.after .diff-copy { color: var(--ink); }
+
+/* diagnosis */
+.diagnosis {
+  margin: 24px 36px 0; padding: 20px 22px;
+  background: var(--surface-2); border-radius: 4px;
+  border: 1px solid var(--border);
+}
+.diag-row {
+  display: flex; gap: 32px; flex-wrap: wrap; margin-bottom: 16px;
+}
+.diag-item { display: flex; flex-direction: column; gap: 4px; }
+.diag-k {
+  font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--faint);
+}
+.diag-v { font-size: 13.5px; font-weight: 600; color: var(--ink); }
+
+.rationale { font-size: 14.5px; color: var(--muted); line-height: 1.65; }
+.rationale strong { color: var(--ink); font-weight: 500; }
+
+.impact {
+  margin-top: 14px; padding-left: 14px;
+  border-left: 2px solid var(--accent);
+  font-family: var(--serif); font-style: italic;
+  font-size: 15.5px; color: var(--ink); line-height: 1.5;
+}
+
+.case-footer {
+  padding: 20px 36px 28px;
+  display: flex; align-items: center; gap: 8px;
+}
+.heuristic-badge {
+  font-family: var(--mono); font-size: 10.5px; color: var(--faint);
+  border: 1px solid var(--border); padding: 3px 9px; border-radius: 2px;
+}
+
+/* ─── ABOUT STRIP ─── */
+.about-strip {
+  padding: 72px 0;
+  border-top: 1px solid var(--border);
+}
+.about-inner {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start;
+}
+@media (max-width: 640px) { .about-inner { grid-template-columns: 1fr; gap: 36px; } }
+.about-inner h2 {
+  font-family: var(--serif); font-size: 32px; font-weight: 300;
+  font-style: italic; color: var(--ink); line-height: 1.25; margin-bottom: 20px;
+}
+.about-inner p { font-size: 15px; color: var(--muted); line-height: 1.7; margin-bottom: 14px; }
+.about-inner p strong { color: var(--ink); font-weight: 500; }
+.about-creds { display: flex; flex-direction: column; gap: 12px; }
+.cred {
+  display: flex; gap: 14px; align-items: flex-start;
+  padding: 16px 18px; background: var(--surface); border-radius: 4px;
+  border: 1px solid var(--border);
+}
+.cred-icon {
+  font-size: 18px; flex-shrink: 0; margin-top: 1px;
+}
+.cred-title { font-size: 13.5px; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
+.cred-sub { font-size: 12.5px; color: var(--muted); font-family: var(--mono); }
+
+/* ─── L10N ─── */
+.l10n-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border); border-radius: 4px; overflow: hidden;
+  margin-top: 32px;
+}
+.l10n-card {
+  background: var(--surface); padding: 28px;
+}
+.l10n-lang {
+  font-family: var(--mono); font-size: 28px; font-weight: 500;
+  color: var(--accent); margin-bottom: 10px; letter-spacing: -0.02em;
+}
+.l10n-title { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
+.l10n-body { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
+
+.compare-table {
+  width: 100%; border-collapse: collapse; margin-top: 32px;
+  font-size: 14px;
+}
+.compare-table th {
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--faint);
+  text-align: left; padding: 10px 16px; border-bottom: 1px solid var(--border);
+}
+.compare-table td {
+  padding: 14px 16px; border-bottom: 1px solid var(--border);
+  vertical-align: top; color: var(--muted); line-height: 1.55;
+}
+.compare-table td:first-child { color: var(--ink); font-weight: 500; width: 30%; }
+.compare-table td:nth-child(2) {
+  color: var(--muted);
+  text-decoration: line-through;
+  text-decoration-color: rgba(201,74,58,0.4);
+}
+.compare-table td:nth-child(3) { color: var(--ink); }
+.compare-table tr:last-child td { border-bottom: none; }
+
+/* ─── SKILLS ─── */
+.skills-section { padding: 72px 0; border-top: 1px solid var(--border); }
+.skills-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border); border-radius: 4px; overflow: hidden;
+  margin-top: 32px;
+}
+.skill-card { background: var(--surface); padding: 24px; }
+.skill-area {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 12px;
+}
+.skill-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+.skill-list li {
+  font-size: 13.5px; color: var(--muted);
+  display: flex; align-items: center; gap: 7px;
+}
+.skill-list li::before {
+  content: '—'; color: var(--faint); font-family: var(--mono);
+}
+
+/* ─── CONTACT ─── */
+.contact-strip {
+  padding: 72px 0 96px; text-align: center;
+  border-top: 1px solid var(--border);
+}
+.contact-strip h2 {
+  font-family: var(--serif); font-size: 38px; font-weight: 300;
+  font-style: italic; margin-bottom: 16px; color: var(--ink);
+}
+.contact-strip p { color: var(--muted); max-width: 440px; margin: 0 auto 36px; line-height: 1.65; }
+.contact-links { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+.contact-link {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--mono); font-size: 13px;
+  color: var(--ink); text-decoration: none;
+  padding: 10px 20px; border: 1px solid var(--border-bright);
+  border-radius: 4px; transition: all 0.2s;
+}
+.contact-link:hover { background: var(--surface); border-color: var(--accent-dim); color: var(--accent); }
+.contact-link.primary {
+  background: var(--accent); color: var(--bg); border-color: var(--accent);
+  font-weight: 600;
+}
+.contact-link.primary:hover { opacity: 0.88; color: var(--bg); }
+
+/* ─── FOOTER ─── */
+footer {
+  border-top: 1px solid var(--border); padding: 24px 28px;
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  font-family: var(--mono); font-size: 11px; color: var(--faint);
+  max-width: 900px; margin: 0 auto;
+}
+
+/* hidden state */
+.case-card.hidden { display: none; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 640px) {
+  .case-top { padding: 24px 20px 0; }
+  .case-title { padding: 14px 20px 0; }
+  .diff-block { margin: 18px 20px 0; }
+  .diagnosis { margin: 16px 20px 0; }
+  .case-footer { padding: 14px 20px 20px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-name">Clara Corvalán</a>
+    <ul class="nav-links">
+      <li><a href="#cases">Work</a></li>
+      <li><a href="#localization">L10N</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">UX Writing · Localization · Content Engineering</div>
+    <h1>Words that guide.<br><em>Systems that scale.</em></h1>
+    <p class="hero-sub">
+      I write and edit <strong>product copy</strong> for digital interfaces — from onboarding flows and error states to technical UI and multilingual content — and I diagnose the reasoning behind every edit.
+    </p>
+    <div class="hero-pills">
+      <span class="pill accent">Onboarding flows</span>
+      <span class="pill accent">Product microcopy</span>
+      <span class="pill accent">Technical UI copy</span>
+      <span class="pill">EN → ES Localization</span>
+      <span class="pill">Error states</span>
+      <span class="pill">Content heuristics</span>
+    </div>
+    <a href="mailto:corvalanmclara@gmail.com" class="hero-cta">Get in touch →</a>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section id="cases">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Portfolio</div>
+      <h2 class="section-title">Selected case studies</h2>
+      <p class="section-desc">Each case is diagnosed against a seven-point UX writing heuristic framework. The fix is the easy part — the reasoning is the craft.</p>
+    </div>
+
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="onboarding">Onboarding</button>
+      <button class="filter-btn" data-filter="microcopy">Microcopy</button>
+      <button class="filter-btn" data-filter="technical">Technical UI</button>
+      <button class="filter-btn" data-filter="l10n">Localization</button>
+      <button class="filter-btn" data-filter="error">Error states</button>
+    </div>
+  </div>
+
+  <div class="wide">
+    <div class="cases" id="caseList"></div>
+  </div>
+</section>
+
+<!-- LOCALIZATION -->
+<section id="localization">
+  <div class="container">
+    <div class="section-header" style="border-bottom:none;">
+      <div class="section-eyebrow">Localization</div>
+      <h2 class="section-title">Copy that crosses borders</h2>
+      <p class="section-desc">Localization isn't translation — it's rebuilding the copy's intent in a new cultural context, while preserving the product's voice.</p>
+    </div>
+
+    <div class="l10n-grid">
+      <div class="l10n-card">
+        <div class="l10n-lang">EN→ES</div>
+        <div class="l10n-title">Certified sworn translation</div>
+        <div class="l10n-body">Registered with CTPCBA (Buenos Aires). Legal documents, certificates, and official correspondence — accurate, sealed, and legally recognized.</div>
+      </div>
+      <div class="l10n-card">
+        <div class="l10n-lang">UI/UX</div>
+        <div class="l10n-title">Product interface localization</div>
+        <div class="l10n-body">Translating microcopy while maintaining character limits, button affordance, and tone consistency across both languages.</div>
+      </div>
+      <div class="l10n-card">
+        <div class="l10n-lang">MKT</div>
+        <div class="l10n-title">Marketing & landing pages</div>
+        <div class="l10n-body">Adapted landing page copy for Phonexa's EN and ES audiences — same conversion goals, rewritten for cultural resonance rather than word-for-word translation.</div>
+      </div>
+    </div>
+
+    <table class="compare-table" style="margin-top: 40px;">
+      <thead>
+        <tr>
+          <th>String</th>
+          <th>Literal translation (avoid)</th>
+          <th>Localized version (preferred)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Submit</td>
+          <td>Someter / Enviar formulario</td>
+          <td>Enviar</td>
+        </tr>
+        <tr>
+          <td>Something went wrong</td>
+          <td>Algo salió mal</td>
+          <td>Ocurrió un error. Intentá de nuevo.</td>
+        </tr>
+        <tr>
+          <td>Get started</td>
+          <td>Obtén un inicio</td>
+          <td>Comenzar</td>
+        </tr>
+        <tr>
+          <td>Your changes have been saved</td>
+          <td>Sus cambios han sido guardados</td>
+          <td>Cambios guardados</td>
+        </tr>
+        <tr>
+          <td>We couldn't find that page</td>
+          <td>No pudimos encontrar esa página</td>
+          <td>Esta página no existe. Volvé al inicio.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-section">
+  <div class="container">
+    <div class="section-eyebrow">Capabilities</div>
+    <h2 class="section-title">What I bring</h2>
+
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-area">UX Writing</div>
+        <ul class="skill-list">
+          <li>Onboarding flows</li>
+          <li>Empty & error states</li>
+          <li>Tooltips & inline help</li>
+          <li>CTAs & labels</li>
+          <li>Notifications & toasts</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <div class="skill-area">Content Strategy</div>
+        <ul class="skill-list">
+          <li>Voice & tone guidelines</li>
+          <li>Heuristic evaluation</li>
+          <li>Content audits</li>
+          <li>Style guides</li>
+          <li>Copy critique</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <div class="skill-area">Localization</div>
+        <ul class="skill-list">
+          <li>EN → ES (sworn cert.)</li>
+          <li>UI string adaptation</li>
+          <li>Cultural localization</li>
+          <li>Marketing copy</li>
+          <li>L10N workflow design</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <div class="skill-area">Tooling</div>
+        <ul class="skill-list">
+          <li>Figma</li>
+          <li>AI-integrated workflows</li>
+          <li>HubSpot CMS</li>
+          <li>Cross-functional collab</li>
+          <li>Content systems</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="about-strip">
+  <div class="container">
+    <div class="about-inner">
+      <div>
+        <h2>Translator, writer, and systems thinker.</h2>
+        <p>I'm a <strong>certified EN–ES Translator</strong> with a degree from UNLP (Buenos Aires) and a specialization in UX/UI Design and UX Writing. My work sits at the intersection of <strong>language precision, user empathy, and product thinking.</strong></p>
+        <p>I've written and edited copy for platforms like <strong>Turno, Taskbird, and Phonexa</strong> — across onboarding, technical UI, marketing pages, and error flows. I also bring a localization lens to every product touchpoint, having worked on both UI string adaptation and official sworn translations.</p>
+        <p>My differentiator isn't just that I fix copy — it's that I diagnose <em>why</em> it fails before I touch it.</p>
+      </div>
+      <div class="about-creds">
+        <div class="cred">
+          <div class="cred-icon">🎓</div>
+          <div>
+            <div class="cred-title">Certified EN–ES Translator</div>
+            <div class="cred-sub">UNLP · CTPCBA registered</div>
+          </div>
+        </div>
+        <div class="cred">
+          <div class="cred-icon">✍️</div>
+          <div>
+            <div class="cred-title">UX Writing & Content Strategy</div>
+            <div class="cred-sub">Onboarding · Microcopy · Technical UI</div>
+          </div>
+        </div>
+        <div class="cred">
+          <div class="cred-icon">🌐</div>
+          <div>
+            <div class="cred-title">Localization & L10N Workflows</div>
+            <div class="cred-sub">Product UI · Marketing · Official docs</div>
+          </div>
+        </div>
+        <div class="cred">
+          <div class="cred-icon">🤖</div>
+          <div>
+            <div class="cred-title">AI-integrated content workflows</div>
+            <div class="cred-sub">Heuristic evaluation · Content systems</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-strip">
+  <div class="container">
+    <h2>Let's build something together.</h2>
+    <p>Open to UX writing, content strategy, and localization projects — especially at product companies working across languages and markets.</p>
+    <div class="contact-links">
+      <a href="mailto:corvalanmclara@gmail.com" class="contact-link primary">Email me →</a>
+      <a href="https://www.linkedin.com/in/mclaracorvalan/" class="contact-link" target="_blank">LinkedIn</a>
+      <a href="https://50549648.hs-sites.com/en/portfolio-clara" class="contact-link" target="_blank">Full portfolio</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;width:100%;max-width:900px;">
+    <span>© 2026 Clara Corvalán · UX Writing & Localization</span>
+    <span>EN–ES · Buenos Aires, Argentina</span>
+  </div>
+</footer>
+
+<script>
+const CASES = [
+  {
+    id: 1,
+    tags: ["onboarding"],
+    platform: "Turno",
+    title: "First-run empty state that left users stranded",
+    heuristic: "Clarity & orientation",
+    severity: 4,
+    threeI: "Inform",
+    before: "No data found.\n\nYou don't have any bookings yet.",
+    after: "You're all set — bookings will appear here once clients start scheduling.\n\nShare your booking link to get started.",
+    rationale: "The original string communicated a system state but gave no <strong>direction</strong>. A first-run empty state is a critical orientation moment: the user is new, unfamiliar with the flow, and stalled. The fix adds the two things missing — confirmation that this is expected and an immediate next action. The CTA copy mirrors the verb users will recognize from the onboarding step they just completed.",
+    impact: "An empty state is an invitation to act, not a dead end."
+  },
+  {
+    id: 2,
+    tags: ["microcopy"],
+    platform: "Taskbird",
+    title: "Confirmation button that didn't confirm anything",
+    heuristic: "Specificity & action",
+    severity: 3,
+    threeI: "Direct",
+    before: "Submit",
+    after: "Save changes",
+    rationale: "\"Submit\" is form jargon — it describes what <strong>the system does</strong>, not what <strong>the user achieves</strong>. In an editing context with an autosave pattern already present, \"Submit\" created confusion about whether an extra step was being required. The fix names the actual outcome, matches the mental model, and removes ambiguity between \"saving\" and \"publishing.\"",
+    impact: "A button should say what happens when you press it."
+  },
+  {
+    id: 3,
+    tags: ["error"],
+    platform: "Turno",
+    title: "Payment failure error with no path forward",
+    heuristic: "Error recovery & trust",
+    severity: 5,
+    threeI: "Direct",
+    before: "Payment failed. Please try again.",
+    after: "Your payment wasn't processed — your card hasn't been charged.\n\nCheck your card details or try a different payment method.",
+    rationale: "The original created anxiety without resolving it: the user doesn't know <strong>whether they were charged</strong>, why it failed, or what to do specifically. High-stakes errors (money, data loss, irreversible actions) need three things: reassurance, explanation, and a specific next step. The fix leads with the most urgent question (was I charged?) then gives two actionable paths. The word 'failed' is preserved because softening failure language can undermine trust.",
+    impact: "Error copy that doesn't inform is just noise with a red border."
+  },
+  {
+    id: 4,
+    tags: ["technical", "l10n"],
+    platform: "Phonexa",
+    title: "Dashboard tooltip that explained the label, not the value",
+    heuristic: "Contextual help & progressive disclosure",
+    severity: 3,
+    threeI: "Inform",
+    before: "Conversion Rate: The percentage of conversions divided by the total number of clicks.",
+    after: "Conversion rate: out of everyone who clicked your ad, this is the share who completed the target action (e.g. filled a form, made a call).",
+    rationale: "The original defined the metric mathematically — accurate, but not useful for the mid-market operator audience who uses the dashboard. <strong>Knowing the formula isn't the same as knowing what to do with the number.</strong> The revised copy defines the metric in terms of the user's actual campaign elements (ad, click, form, call), giving it practical meaning. For the ES locale, 'tasa de conversión' and 'acción objetivo' were used over more literal alternatives to match SEM vocabulary already familiar to Spanish-speaking users.",
+    impact: "Technical copy isn't about accuracy — it's about the right accuracy for the right reader."
+  },
+  {
+    id: 5,
+    tags: ["onboarding", "l10n"],
+    platform: "Turno",
+    title: "Onboarding step labels that didn't match what the step asked",
+    heuristic: "Consistency & vocabulary",
+    severity: 3,
+    threeI: "Direct",
+    before: "Step 2: Business configuration\n\n[Form with fields: working hours, service area, booking buffer time]",
+    after: "Step 2: Set your hours and availability\n\n[Same form fields]",
+    rationale: "\"Business configuration\" is an internal system concept, not a user task. The user's mental model at this moment is: <em>I'm setting up when I work</em>. The original label forced a translation between system language and human intent. The revised label uses the user's own vocabulary and sets accurate expectations about what the step contains — reducing drop-off at a critical onboarding moment. In the ES version, 'Configurá tus horarios y disponibilidad' was used over the more formal 'Configure sus horarios' to match the product's established voseo voice.",
+    impact: "When the label matches the task, users don't have to pause and parse."
+  },
+  {
+    id: 6,
+    tags: ["microcopy"],
+    platform: "Taskbird",
+    title: "Destructive action modal with symmetric button labels",
+    heuristic: "Safety & reversibility",
+    severity: 4,
+    threeI: "Inform",
+    before: "Are you sure you want to delete this task?\n\n[Cancel] [OK]",
+    after: "Delete this task?\n\nThis can't be undone.\n\n[Keep task] [Delete task]",
+    rationale: "Two issues compound here. First, \"OK\" is a non-answer — it doesn't confirm what's being approved, requiring the user to hold the consequence in memory while reading buttons. Second, \"Cancel\" is ambiguous in modals: does it cancel the action or cancel something else? The revised version names both actions precisely, states the consequence up front (irreversibility), and uses asymmetric labels that signal which choice is destructive. <strong>In high-stakes moments, cognitive load is a UX risk.</strong>",
+    impact: "Symmetric buttons make destructive choices feel like safe ones."
+  }
+];
+
+function renderSeverityDots(n) {
+  let html = '<div class="sev-dots">';
+  for (let i = 1; i <= 5; i++) {
+    html += `<div class="sev-dot ${i <= n ? 'filled' : ''} ${i <= n && n >= 4 ? 'high' : ''}"></div>`;
+  }
+  return html + '</div>';
+}
+
+function tagClass(t) {
+  const map = { onboarding: 'tag-onboarding', microcopy: 'tag-microcopy', technical: 'tag-technical', l10n: 'tag-l10n', error: 'tag-error' };
+  return map[t] || '';
+}
+function tagLabel(t) {
+  const map = { onboarding: 'Onboarding', microcopy: 'Microcopy', technical: 'Technical UI', l10n: 'L10N', error: 'Error state' };
+  return map[t] || t;
+}
+
+function renderCases(filter) {
+  const list = document.getElementById('caseList');
+  list.innerHTML = '';
+  const filtered = filter === 'all' ? CASES : CASES.filter(c => c.tags.includes(filter));
+  filtered.forEach(c => {
+    const tagsHtml = c.tags.map(t => `<span class="case-tag ${tagClass(t)}">${tagLabel(t)}</span>`).join('');
+    const beforeLines = c.before.split('\n').join('<br>');
+    const afterLines  = c.after.split('\n').join('<br>');
+    list.innerHTML += `
+      <div class="case-card" data-tags="${c.tags.join(',')}">
+        <div class="case-top">
+          <div class="case-meta">
+            ${tagsHtml}
+            <span class="case-platform">${c.platform}</span>
+          </div>
+          <div class="severity">
+            ${renderSeverityDots(c.severity)}
+            <span>Severity ${c.severity}/5</span>
+          </div>
+        </div>
+        <div class="case-title">${c.title}</div>
+        <div class="diff-block">
+          <div class="diff-col before">
+            <div class="diff-label">✕ Before</div>
+            <div class="diff-copy">${beforeLines}</div>
+          </div>
+          <div class="diff-col after">
+            <div class="diff-label">✓ After</div>
+            <div class="diff-copy">${afterLines}</div>
+          </div>
+        </div>
+        <div class="diagnosis">
+          <div class="diag-row">
+            <div class="diag-item"><div class="diag-k">Heuristic</div><div class="diag-v">${c.heuristic}</div></div>
+            <div class="diag-item"><div class="diag-k">3 I's purpose</div><div class="diag-v">${c.threeI}</div></div>
+          </div>
+          <div class="rationale">${c.rationale}</div>
+          <div class="impact">${c.impact}</div>
+        </div>
+        <div class="case-footer">
+          <span class="heuristic-badge">${c.heuristic}</span>
+        </div>
+      </div>`;
+  });
+}
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderCases(btn.dataset.filter);
+  });
+});
+
+renderCases('all');
+</script>
+</body>
+</html>
