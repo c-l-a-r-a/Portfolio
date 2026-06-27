@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clara Corvalan — UX Writing & Localization Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,300;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:        #ECE3DC;   /* Satin Linen */
+  --surface:   #f4eeea;   /* lighter Satin Linen for cards */
+  --surface-2: #e3d9d2;   /* slightly darker for nested */
+  --rose:      #410016;   /* Bulgarian Rose */
+  --moccasin:  #837C36;   /* Moccasin */
+  --pearl:     #A3B4BE;   /* Spun Pearl */
+  --hawkes:    #CEDBFE;   /* Hawkes Blue */
+  --charcoal:  #2a1a1f;   /* warm dark derived from Bulgarian Rose */
+
+  --ink:       var(--charcoal);
+  --muted:     #6b4f56;
+  --faint:     #a08890;
+  --border:    rgba(65,0,22,0.10);
+  --border-mid:rgba(65,0,22,0.18);
+
+  --accent:        var(--rose);
+  --accent-soft:   rgba(65,0,22,0.08);
+  --accent-dim:    rgba(65,0,22,0.25);
+  --green:         var(--moccasin);
+  --green-soft:    rgba(131,124,54,0.14);
+  --red:           #8c1a2a;
+  --red-soft:      rgba(140,26,42,0.10);
+  --blue:          #6080a0;
+  --blue-soft:     rgba(206,219,254,0.5);
+
+  --serif: 'Fraunces', Georgia, serif;
+  --sans:  'Inter', system-ui, sans-serif;
+  --mono:  'JetBrains Mono', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { background: var(--bg); color: var(--ink); font-family: var(--sans); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+.container { max-width: 900px; margin: 0 auto; padding: 0 28px; }
+.wide      { max-width: 1100px; margin: 0 auto; padding: 0 28px; }
+
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(236,227,220,0.93); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-mid); padding: 0 28px;
+}
+.nav-inner {
+  max-width: 900px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between; height: 56px;
+}
+.nav-name { font-family: var(--serif); font-weight: 500; font-size: 17px; color: var(--rose); text-decoration: none; font-style: italic; }
+.nav-links { display: flex; gap: 28px; list-style: none; }
+.nav-links a { font-size: 12.5px; color: var(--muted); text-decoration: none; font-family: var(--mono); letter-spacing: 0.06em; transition: color 0.2s; }
+.nav-links a:hover { color: var(--rose); }
+
+/* HERO */
+.hero { padding: 96px 0 72px; border-bottom: 1px solid var(--border-mid); }
+.hero-eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--rose); margin-bottom: 28px; display: flex; align-items: center; gap: 12px; }
+.hero-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--rose); }
+.hero h1 { font-family: var(--serif); font-size: clamp(40px, 7vw, 64px); font-weight: 300; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 24px; color: var(--charcoal); }
+.hero h1 em { font-style: italic; color: var(--rose); }
+.hero-sub { font-size: 17px; line-height: 1.72; color: var(--muted); max-width: 560px; margin-bottom: 40px; }
+.hero-sub strong { color: var(--charcoal); font-weight: 600; }
+.hero-cta { display: inline-flex; align-items: center; gap: 10px; background: var(--rose); color: var(--bg); font-weight: 600; font-size: 14px; padding: 12px 26px; text-decoration: none; border-radius: 4px; transition: opacity 0.2s; }
+.hero-cta:hover { opacity: 0.85; }
+
+/* SECTION */
+.section-header { padding: 68px 0 36px; }
+.section-eyebrow { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--rose); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+.section-eyebrow::before { content: ''; display: block; width: 18px; height: 1px; background: var(--rose); }
+.section-title { font-family: var(--serif); font-size: clamp(24px, 4vw, 36px); font-weight: 300; font-style: italic; color: var(--charcoal); margin-bottom: 10px; }
+.section-desc { font-size: 15px; color: var(--muted); max-width: 540px; line-height: 1.68; }
+
+/* CAPABILITIES */
+.capabilities-section { padding: 68px 0; border-bottom: 1px solid var(--border-mid); }
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2px; margin-top: 32px; border: 1px solid var(--border-mid); border-radius: 6px; overflow: hidden; }
+.skill-card { background: var(--surface); padding: 24px; }
+.skill-area { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rose); margin-bottom: 12px; }
+.skill-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+.skill-list li { font-size: 13.5px; color: var(--muted); display: flex; align-items: flex-start; gap: 8px; }
+.skill-list li::before { content: '—'; color: var(--faint); font-family: var(--mono); flex-shrink: 0; }
+
+/* FILTER */
+.filter-bar { display: flex; gap: 8px; flex-wrap: wrap; padding: 24px 0; border-bottom: 1px solid var(--border-mid); }
+.filter-btn { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; padding: 6px 14px; border-radius: 3px; border: 1px solid var(--border-mid); background: transparent; color: var(--muted); cursor: pointer; transition: all 0.18s; }
+.filter-btn:hover { color: var(--rose); border-color: var(--accent-dim); }
+.filter-btn.active { background: var(--rose); border-color: var(--rose); color: var(--bg); }
+
+/* CASES */
+.cases { display: flex; flex-direction: column; gap: 2px; }
+.case-card { background: var(--surface); border-radius: 6px; border: 1px solid var(--border-mid); margin-top: 12px; transition: box-shadow 0.2s; }
+.case-card:hover { box-shadow: 0 4px 24px rgba(65,0,22,0.08); }
+.case-top { padding: 28px 32px 0; display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.case-meta { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }
+.case-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 9px; border-radius: 2px; }
+.tag-onboarding { background: rgba(206,219,254,0.5); color: #4a6080; }
+.tag-microcopy  { background: rgba(131,124,54,0.14); color: var(--moccasin); }
+.tag-technical  { background: var(--accent-soft); color: var(--rose); }
+.tag-l10n       { background: rgba(163,180,190,0.25); color: #4a6070; }
+.tag-error      { background: var(--red-soft); color: var(--red); }
+.case-platform { font-family: var(--mono); font-size: 10px; color: var(--faint); letter-spacing: 0.06em; }
+.severity { display: flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 10px; color: var(--muted); }
+.sev-dots { display: flex; gap: 3px; }
+.sev-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--border-mid); }
+.sev-dot.filled { background: var(--rose); }
+.sev-dot.filled.high { background: var(--red); }
+.case-title { font-family: var(--serif); font-size: 20px; font-weight: 500; color: var(--charcoal); padding: 16px 32px 0; line-height: 1.3; }
+.diff-block { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin: 20px 32px 0; border-radius: 4px; overflow: hidden; border: 1px solid var(--border-mid); }
+@media (max-width: 620px) { .diff-block { grid-template-columns: 1fr; } }
+.diff-col { padding: 18px 20px; }
+.diff-col.before { background: rgba(65,0,22,0.04); }
+.diff-col.after  { background: rgba(131,124,54,0.07); }
+.diff-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+.diff-col.before .diff-label { color: var(--red); }
+.diff-col.after  .diff-label { color: var(--moccasin); }
+.diff-copy { font-size: 15px; line-height: 1.6; }
+.diff-col.before .diff-copy { color: var(--faint); text-decoration: line-through; text-decoration-color: rgba(65,0,22,0.30); text-decoration-thickness: 1.5px; }
+.diff-col.after .diff-copy { color: var(--charcoal); }
+.diagnosis { margin: 18px 32px 0; padding: 18px 20px; background: var(--surface-2); border-radius: 4px; border: 1px solid var(--border); }
+.diag-row { display: flex; gap: 28px; flex-wrap: wrap; margin-bottom: 14px; }
+.diag-item { display: flex; flex-direction: column; gap: 4px; }
+.diag-k { font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--faint); }
+.diag-v { font-size: 13px; font-weight: 600; color: var(--charcoal); }
+.rationale { font-size: 14px; color: var(--muted); line-height: 1.68; }
+.rationale strong { color: var(--charcoal); font-weight: 600; }
+.impact { margin-top: 14px; padding-left: 14px; border-left: 2px solid var(--rose); font-family: var(--serif); font-style: italic; font-size: 15px; color: var(--rose); line-height: 1.5; }
+.case-footer { padding: 16px 32px 24px; display: flex; align-items: center; gap: 8px; }
+.heuristic-badge { font-family: var(--mono); font-size: 10px; color: var(--faint); border: 1px solid var(--border-mid); padding: 3px 9px; border-radius: 2px; }
+
+/* ABOUT */
+.about-strip { padding: 68px 0; border-top: 1px solid var(--border-mid); }
+.about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+@media (max-width: 640px) { .about-inner { grid-template-columns: 1fr; gap: 32px; } }
+.about-inner h2 { font-family: var(--serif); font-size: 30px; font-weight: 300; font-style: italic; color: var(--charcoal); line-height: 1.25; margin-bottom: 18px; }
+.about-inner p { font-size: 15px; color: var(--muted); line-height: 1.72; margin-bottom: 14px; }
+.about-inner p strong { color: var(--charcoal); font-weight: 600; }
+.about-creds { display: flex; flex-direction: column; gap: 10px; }
+.cred { display: flex; gap: 14px; align-items: flex-start; padding: 15px 17px; background: var(--surface); border-radius: 5px; border: 1px solid var(--border-mid); }
+.cred-icon { font-size: 17px; flex-shrink: 0; margin-top: 1px; }
+.cred-title { font-size: 13px; font-weight: 600; color: var(--charcoal); margin-bottom: 3px; }
+.cred-sub   { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+
+/* PHRASE CALLOUT */
+.phrase-box { margin-top: 20px; padding: 20px 22px; background: var(--surface); border-radius: 6px; border: 1px solid var(--border-mid); border-left: 3px solid var(--rose); }
+.phrase-box-label { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rose); margin-bottom: 8px; }
+.phrase-box p { font-size: 13.5px; color: var(--muted); line-height: 1.68; margin-bottom: 0; }
+.phrase-box p strong { color: var(--charcoal); }
+
+/* L10N TABLE */
+.l10n-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2px; margin-top: 28px; border: 1px solid var(--border-mid); border-radius: 6px; overflow: hidden; }
+.l10n-card { background: var(--surface); padding: 24px; }
+.l10n-lang { font-family: var(--mono); font-size: 24px; font-weight: 500; color: var(--rose); margin-bottom: 8px; }
+.l10n-title { font-size: 14px; font-weight: 600; color: var(--charcoal); margin-bottom: 6px; }
+.l10n-body  { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+.compare-table { width: 100%; border-collapse: collapse; margin-top: 28px; font-size: 14px; border: 1px solid var(--border-mid); border-radius: 6px; overflow: hidden; }
+.compare-table th { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--faint); text-align: left; padding: 10px 16px; border-bottom: 1px solid var(--border-mid); background: var(--surface-2); }
+.compare-table td { padding: 13px 16px; border-bottom: 1px solid var(--border); vertical-align: top; color: var(--muted); line-height: 1.55; background: var(--surface); }
+.compare-table td:first-child  { color: var(--charcoal); font-weight: 500; width: 28%; }
+.compare-table td:nth-child(2) { color: var(--faint); text-decoration: line-through; text-decoration-color: rgba(65,0,22,0.30); }
+.compare-table td:nth-child(3) { color: var(--charcoal); }
+.compare-table tr:last-child td { border-bottom: none; }
+
+/* CONTACT */
+.contact-strip { padding: 68px 0 92px; text-align: center; border-top: 1px solid var(--border-mid); }
+.contact-strip h2 { font-family: var(--serif); font-size: 36px; font-weight: 300; font-style: italic; margin-bottom: 14px; color: var(--charcoal); }
+.contact-strip p { color: var(--muted); max-width: 420px; margin: 0 auto 32px; line-height: 1.68; }
+.contact-links { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.contact-link { display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 12.5px; color: var(--charcoal); text-decoration: none; padding: 10px 20px; border: 1px solid var(--border-mid); border-radius: 4px; transition: all 0.2s; background: var(--surface); }
+.contact-link:hover { border-color: var(--rose); color: var(--rose); }
+.contact-link.primary { background: var(--rose); color: var(--bg); border-color: var(--rose); font-weight: 600; }
+.contact-link.primary:hover { opacity: 0.85; color: var(--bg); }
+
+footer { border-top: 1px solid var(--border-mid); padding: 22px 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; font-family: var(--mono); font-size: 11px; color: var(--faint); max-width: 900px; margin: 0 auto; }
+
+@media (max-width: 640px) {
+  .case-top { padding: 22px 18px 0; }
+  .case-title { padding: 13px 18px 0; }
+  .diff-block { margin: 16px 18px 0; }
+  .diagnosis  { margin: 14px 18px 0; }
+  .case-footer { padding: 12px 18px 20px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-name">Clara Corvalan</a>
+    <ul class="nav-links">
+      <li><a href="#capabilities">Capabilities</a></li>
+      <li><a href="#content-ops">Content Ops</a></li>
+      <li><a href="#cases">Portfolio</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- 1. HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">UX Writing · Localization · Content Engineering</div>
+    <h1>Words that guide.<br><em>Systems that scale.</em></h1>
+    <p class="hero-sub">
+      I write and edit <strong>product copy</strong> for digital interfaces. From onboarding flows and error states to technical UI and multilingual content, I diagnose and document the reasoning behind every edit.
+    </p>
+    <a href="mailto:corvalanmclara@gmail.com" class="hero-cta">Get in touch →</a>
+  </div>
+</section>
+
+<!-- 2. CAPABILITIES -->
+<section id="capabilities" class="capabilities-section">
+  <div class="container">
+    <div class="section-eyebrow">Capabilities</div>
+    <h2 class="section-title">What I bring</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-area">UX Writing</div>
+        <ul class="skill-list">
+          <li>Onboarding flows</li>
+          <li>Empty &amp; error states</li>
+          <li>Tooltips &amp; inline help</li>
+          <li>CTAs &amp; labels</li>
+          <li>Notifications &amp; toasts</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <div class="skill-area">Content Strategy</div>
+        <ul class="skill-list">
+          <li>Voice &amp; tone guidelines</li>
+          <li>Heuristic evaluation</li>
+          <li>Content audits</li>
+          <li>Style guides</li>
+          <li>Copy review</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <div class="skill-area">Localization</div>
+        <ul class="skill-list">
+          <li>UI string adaptation</li>
+          <li>Cultural localization</li>
+          <li>Marketing copy</li>
+          <li>L10N workflow design to scale the product (Turno: 9 languages)</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <div class="skill-area">Tooling</div>
+        <ul class="skill-list">
+          <li>Figma</li>
+          <li>Phrase</li>
+          <li>ElevenLabs</li>
+          <li>HubSpot CMS</li>
+          <li>Claude Code &amp; Cowork</li>
+          <li>Adobe XD</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. CONTENT OPS -->
+<section id="content-ops" style="padding: 68px 0; border-top: 1px solid var(--border-mid); border-bottom: 1px solid var(--border-mid);">
+  <div class="container">
+    <div class="section-eyebrow">Content Operations</div>
+    <h2 class="section-title">How I think and work</h2>
+    <p class="section-desc">Good copy scales when it's built on systems. I design the infrastructure that makes consistent, localized, and maintainable content possible across teams and products.</p>
+
+    <div class="skills-grid" style="margin-top: 32px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+      <div class="skill-card">
+        <div class="skill-area">Audits and alignment</div>
+        <p style="font-size: 13.5px; color: var(--muted); line-height: 1.68;">I run cross-project content audits and document findings in Confluence. The goal: identify inconsistencies across products and align them to a single standard. The error state pattern in the portfolio is a direct output of this process.</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-area">Pattern library</div>
+        <p style="font-size: 13.5px; color: var(--muted); line-height: 1.68;">I build reusable content components that design and engineering can apply consistently. Current patterns include error states, table copy, form labels, and empty states. Each pattern is documented with usage rules and localization notes.</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-area">Style guide governance</div>
+        <p style="font-size: 13.5px; color: var(--muted); line-height: 1.68;">I'm currently leading the effort to unify product voice and tone with marketing at Turno. Marketing has an established voice; the product does not yet. Bridging that gap is the next project on my roadmap.</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-area">L10N workflow with Phrase</div>
+        <p style="font-size: 13.5px; color: var(--muted); line-height: 1.68;">Phrase is a translation management system (TMS) built for software products. It connects to codebases, manages string files, supports glossaries and translation memories, and keeps content in sync across updates. I use it to deliver localized strings directly to the development team, removing the back-and-forth between writers and developers, reducing the risk of untranslated strings shipping to production, and maintaining quality across every locale. At Turno, this workflow supports 9 languages.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. PORTFOLIO -->
+<section id="cases">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Portfolio</div>
+      <h2 class="section-title">Selected case studies</h2>
+      <p class="section-desc">Each case is diagnosed against a seven-point UX writing heuristic framework. The fix is the easy part, the reasoning is the craft.</p>
+    </div>
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="onboarding">Onboarding</button>
+      <button class="filter-btn" data-filter="microcopy">Microcopy</button>
+      <button class="filter-btn" data-filter="error">Error states</button>
+      <button class="filter-btn" data-filter="technical">Technical jargon</button>
+      <button class="filter-btn" data-filter="l10n">Marketing site localization (EN-ES)</button>
+    </div>
+  </div>
+  <div class="wide">
+    <div class="cases" id="caseList"></div>
+  </div>
+</section>
+
+<!-- 4. ABOUT -->
+<section id="about" class="about-strip">
+  <div class="container">
+    <div class="about-inner">
+      <div>
+        <h2>Translator, writer, localization specialist, and systems thinker.</h2>
+        <p>I'm a <strong>certified EN–ES Translator</strong> with a degree from UNLP (Buenos Aires) and a specialization in UX/UI Design and UX Writing. My work sits at the intersection of language precision, user empathy, conversational design, and product thinking.</p>
+        <p>I've written and edited copy for platforms like <strong>Turno, Taskbird, and Avature</strong>, and marketing content for Phonexa's website.</p>
+        <p>I also bring a localization lens to every product touchpoint. Localization isn't translation, it's rebuilding the copy's intent in a new cultural context, while preserving the product's voice.</p>
+
+        <p style="margin-top: 20px;">My differentiator isn't just that I fix copy. It's that I diagnose why it fails before I touch it.</p>
+      </div>
+      <div class="about-creds">
+        <div class="cred">
+          <div class="cred-icon">🎓</div>
+          <div>
+            <div class="cred-title">Certified EN–ES Translator</div>
+            <div class="cred-sub">UNLP · CTPCBA registered</div>
+          </div>
+        </div>
+        <div class="cred">
+          <div class="cred-icon">✍️</div>
+          <div>
+            <div class="cred-title">UX Writing &amp; Content Strategy</div>
+            <div class="cred-sub">Onboarding · Microcopy · Technical UI</div>
+          </div>
+        </div>
+        <div class="cred">
+          <div class="cred-icon">🌐</div>
+          <div>
+            <div class="cred-title">Localization &amp; L10N Workflows</div>
+            <div class="cred-sub">Product UI · Marketing · 9 languages at Turno</div>
+          </div>
+        </div>
+        <div class="cred">
+          <div class="cred-icon">🤖</div>
+          <div>
+            <div class="cred-title">AI-integrated content workflows</div>
+            <div class="cred-sub">Heuristic evaluation · Content systems</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-strip">
+  <div class="container">
+    <h2>Let's build something together.</h2>
+    <p>Open to UX writing, content strategy, and localization projects, especially at product companies working across languages and markets.</p>
+    <div class="contact-links">
+      <a href="mailto:corvalanmclara@gmail.com" class="contact-link primary">Email me →</a>
+      <a href="https://www.linkedin.com/in/mclaracorvalan/" class="contact-link" target="_blank">LinkedIn</a>
+      <a href="https://50549648.hs-sites.com/en/portfolio-clara" class="contact-link" target="_blank">Full portfolio</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;width:100%;max-width:900px;">
+    <span>© 2026 Clara Corvalan · UX Writing &amp; Localization</span>
+    <span>EN–ES · Buenos Aires, Argentina</span>
+  </div>
+</footer>
+
+<script>
+const CASES = [
+  {
+    id: 1, tags: ["microcopy"], platform: "Turno · Checklists",
+    title: "A CTA that named the wrong action at the wrong moment",
+    heuristic: "Actionability", severity: 3,
+    before: "Create Checklist",
+    after: "Save Checklist",
+    rationale: "By the time users reach this screen, the checklist already exists. It was created in the previous step. This screen is for editing its details and confirming the information. <strong>A CTA that says \"Create\" when the action is actually \"Save\" violates information scent: the verb doesn't match what's about to happen.</strong> Users may hesitate, unsure whether pressing the button will create a duplicate, overwrite something, or finalize an edit. The fix costs one word and removes all of that ambiguity. The verb now describes the actual action at this point in the flow.",
+    impact: "When the verb matches the step, users don't have to guess what happens next."
+  },
+  {
+    id: 2, tags: ["microcopy"], platform: "Turno · Checklists",
+    title: "A warning that named the problem but skipped the solution",
+    heuristic: "Clarity", severity: 3, threeI: "Inform",
+    before: "Checklists with more than 40 items might affect the teammate's performance.",
+    after: "Checklists with more than 40 items may affect your teammate's performance. Consider removing items you may not need.",
+    rationale: "The original correctly flags the risk, but stops there. A warning without a suggestion puts the cognitive burden entirely on the user: they know something is wrong, but not what to do about it. <strong>Purposeful copy not only names the problem but points toward a resolution.</strong> The revision adds a low-pressure suggestion that respects user autonomy without being prescriptive. Note also the shift from 'the teammate' to 'your teammate', which moves the sentence from system language to user language.",
+    impact: "Informing without directing is half a job. The second sentence is what makes the warning useful."
+  },
+  {
+    id: 3, tags: ["onboarding"], platform: "Turno · Guest Chat",
+    title: "A welcome screen that didn't explain the feature",
+    heuristic: "Clarity", severity: 4, threeI: "Inform",
+    before: "Welcome to Guest Chat\n\nSet up AI-Powered guest messaging for your properties. We'll import your Airbnb conversations and prepare data for each property.",
+    after: "Set up Turno's AI assistant to reply to your Airbnb guests' messages.\n\nGuest Chat learns about your properties from your Airbnb history, answers common questions automatically, and checks with you when it's not sure. You're always in control of what gets sent and how.\n\n[Get started]",
+    rationale: "The original screen is a title and a technical description of what the system will do. It says nothing about what the feature actually does for the host, how it works day-to-day, or how much control they retain. Hosts land without context on the guest messaging flow, the data model, or their own role. <strong>An onboarding screen's job is to answer: what is this, how does it work, and is it safe for me to proceed?</strong> The revision answers all three. It leads with the user's goal (reply to guests), explains the mechanism in plain terms, and explicitly addresses the trust concern (you're always in control) before asking users to commit.",
+    impact: "Users don't abandon features they understand. They abandon ones they can't picture using."
+  },
+  {
+    id: 4, tags: ["technical"], platform: "Turno · Guest Chat",
+    title: "Technical jargon that implied a wrong mental model",
+    heuristic: "Clarity", severity: 3, threeI: "Inform",
+    before: "Sources disagree - choose one",
+    after: "Your assistant found multiple notes about [topic]",
+    rationale: "\"Sources disagree\" implies there is a single correct answer and that two sources are in conflict over it. But that's not the actual problem: the issue is that multiple separate facts exist within a single field, and the assistant needs the host to resolve the ambiguity. The original framing puts the host in the role of arbitrator between competing truths, which creates unnecessary friction. <strong>The revision describes what actually happened</strong> (multiple notes were found) without implying error or conflict, and names the topic so hosts have context before making a decision.",
+    impact: "When the interface misnames a situation, users solve the wrong problem."
+  },
+  {
+    id: 5, tags: ["error"], platform: "Turno & Taskbird",
+    title: "One inline error pattern to replace dozens of inconsistent ones",
+    heuristic: "Consistency", severity: 3, threeI: "Inform",
+    before: "Please, select a property.\nPlease, enter this information.\nThis is required.\nField cannot be empty.",
+    after: "This field is required.",
+    rationale: "Across both products, required-field errors were written ad hoc, resulting in at least four different phrasings for the same situation. Beyond the inconsistency, the original strings had two other problems: they used polite commands ('Please') which add length without adding clarity, and some were written in second person while others were passive. <strong>A single, standardized pattern solves the UX problem, reduces the localization token count, and creates a reusable content component.</strong> 'This field is required' is direct, neutral, consistent, and translates cleanly into Spanish as a single string. Pattern documented and applied across both products.",
+    impact: "Standardization is a content strategy decision, not just an editing one."
+  },
+  {
+    id: 6, tags: ["l10n"], platform: "Turno · Marketing website",
+    title: "A localization audit that fixed what literal translation broke",
+    heuristic: "Consistency", severity: 4, threeI: "Inform",
+    before: "Limpiador/a · Pagos más limpios · Invitados · Sin sostener la llave inglesa",
+    after: "Personal de limpieza · Pagos al personal de limpieza · Huéspedes · Sin tener que ensuciarte las manos",
+    rationale: "The Turno Features page had been translated word-for-word, which produced strings that were grammatically correct but contextually wrong. <strong>Four categories of issues were identified and corrected.</strong> Gendered terms were replaced with inclusive collective nouns per the style guide. A critical mistranslation rendered 'cleaner payments' as 'cleaner-tasting payments' ('pagos más limpios'), which was corrected to 'payments to cleaning staff'. Audience-specific vocabulary was updated from generic ('invitados') to industry-standard ('huéspedes'). And a literal rendering of an English idiom was replaced with the Spanish equivalent that carries the same conversational register.<br><br><table style='width:100%;border-collapse:collapse;font-size:13px;margin-top:10px;'><thead><tr><th style='text-align:left;font-family:var(--mono);font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint);padding:8px 12px;border-bottom:1px solid var(--border-mid);background:var(--surface-2);'>Issue</th><th style='text-align:left;font-family:var(--mono);font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint);padding:8px 12px;border-bottom:1px solid var(--border-mid);background:var(--surface-2);'>Before</th><th style='text-align:left;font-family:var(--mono);font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint);padding:8px 12px;border-bottom:1px solid var(--border-mid);background:var(--surface-2);'>After</th></tr></thead><tbody><tr><td style='padding:8px 12px;border-bottom:1px solid var(--border);color:var(--charcoal);font-weight:500;'>Gendered term</td><td style='padding:8px 12px;border-bottom:1px solid var(--border);color:var(--faint);text-decoration:line-through;text-decoration-color:rgba(65,0,22,0.30);'>Limpiador/a</td><td style='padding:8px 12px;border-bottom:1px solid var(--border);color:var(--charcoal);'>Personal de limpieza / Persona de limpieza</td></tr><tr><td style='padding:8px 12px;border-bottom:1px solid var(--border);color:var(--charcoal);font-weight:500;'>Critical mistranslation</td><td style='padding:8px 12px;border-bottom:1px solid var(--border);color:var(--faint);text-decoration:line-through;text-decoration-color:rgba(65,0,22,0.30);'>Pagos más limpios</td><td style='padding:8px 12px;border-bottom:1px solid var(--border);color:var(--charcoal);'>Pagos al personal de limpieza</td></tr><tr><td style='padding:8px 12px;border-bottom:1px solid var(--border);color:var(--charcoal);font-weight:500;'>Audience vocabulary</td><td style='padding:8px 12px;border-bottom:1px solid var(--border);color:var(--faint);text-decoration:line-through;text-decoration-color:rgba(65,0,22,0.30);'>Invitados</td><td style='padding:8px 12px;border-bottom:1px solid var(--border);color:var(--charcoal);'>Huéspedes</td></tr><tr><td style='padding:8px 12px;color:var(--charcoal);font-weight:500;'>Idiomatic expression</td><td style='padding:8px 12px;color:var(--faint);text-decoration:line-through;text-decoration-color:rgba(65,0,22,0.30);'>Sin sostener la llave inglesa</td><td style='padding:8px 12px;color:var(--charcoal);'>Sin tener que ensuciarte las manos</td></tr></tbody></table>",
+    impact: "A localized product that sounds foreign to its audience isn't localized. It's translated."
+  }
+];
+
+function renderSeverityDots(n) {
+  let html = '<div class="sev-dots">';
+  for (let i = 1; i <= 5; i++) {
+    html += `<div class="sev-dot ${i <= n ? 'filled' : ''} ${i <= n && n >= 4 ? 'high' : ''}"></div>`;
+  }
+  return html + '</div>';
+}
+
+const tagClass = t => ({ onboarding:'tag-onboarding', microcopy:'tag-microcopy', technical:'tag-technical', l10n:'tag-l10n', error:'tag-error' }[t] || '');
+const tagLabel = t => ({ onboarding:'Onboarding', microcopy:'Microcopy', technical:'Technical jargon', l10n:'Marketing site localization (EN-ES)', error:'Error state' }[t] || t);
+
+function renderCases(filter) {
+  const list = document.getElementById('caseList');
+  list.innerHTML = '';
+  const filtered = filter === 'all' ? CASES : CASES.filter(c => c.tags.includes(filter));
+  filtered.forEach(c => {
+    const tagsHtml    = c.tags.map(t => `<span class="case-tag ${tagClass(t)}">${tagLabel(t)}</span>`).join('');
+    const beforeLines = c.before.split('\n').join('<br>');
+    const afterLines  = c.after.split('\n').join('<br>');
+    list.innerHTML += `
+      <div class="case-card">
+        <div class="case-top">
+          <div class="case-meta">${tagsHtml}<span class="case-platform">${c.platform}</span></div>
+          <div class="severity">${renderSeverityDots(c.severity)}<span>Severity ${c.severity}/5</span></div>
+        </div>
+        <div class="case-title">${c.title}</div>
+        <div class="diff-block">
+          <div class="diff-col before"><div class="diff-label">✕ Before</div><div class="diff-copy">${beforeLines}</div></div>
+          <div class="diff-col after"><div class="diff-label">✓ After</div><div class="diff-copy">${afterLines}</div></div>
+        </div>
+        <div class="diagnosis">
+          <div class="diag-row">
+            <div class="diag-item"><div class="diag-k">Heuristic</div><div class="diag-v">${c.heuristic}</div></div>
+            ${c.threeI ? `<div class="diag-item"><div class="diag-k">3 I's purpose</div><div class="diag-v">${c.threeI}</div></div>` : ''}
+          </div>
+          <div class="rationale">${c.rationale}</div>
+          <div class="impact">${c.impact}</div>
+        </div>
+        <div class="case-footer"><span class="heuristic-badge">${c.heuristic}</span></div>
+      </div>`;
+  });
+}
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderCases(btn.dataset.filter);
+  });
+});
+
+renderCases('all');
+</script>
+</body>
+</html>
